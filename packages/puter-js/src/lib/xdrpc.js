@@ -27,10 +27,6 @@ export class CallbackManager {
     attach_to_source (source) {
         source.addEventListener('message', event => {
             const { data } = event;
-            console.log(
-                'test-app got message from window',
-                data,
-            );
             debugger;
             if (data && typeof data === 'object' && data.$SCOPE === $SCOPE) {
                 const { id, args } = data;
@@ -93,8 +89,8 @@ export class Hydrator {
         ) {
             const { id } = value;
             return (...args) => {
-                console.log('sending message', { $SCOPE, id, args });
-                console.log('target', this.target);
+                // console.log('sending message', { $SCOPE, id, args });
+                // console.log('target', this.target);
                 this.target.postMessage({ $SCOPE, id, args }, '*');
             };
         } else if (Array.isArray(value)) {
